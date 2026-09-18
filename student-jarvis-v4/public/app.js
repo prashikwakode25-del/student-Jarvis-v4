@@ -1,4 +1,5 @@
-const SUPABASE_URL="PASTE_YOUR_SUPABASE_URL";const SUPABASE_ANON_KEY="PASTE_YOUR_SUPABASE_ANON_KEY";const sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+const SUPABASE_URL="https://wnwfiwcgzrzzavrbyzns.supabase.co/rest/v1/";
+const SUPABASE_ANON_KEY="sb_publishable_6JEVh3K-7A9HegBnwgxXKQ_UqFYbwhU";
 const $=id=>document.getElementById(id);let signup=false,user=null,data={profile:{name:"Student",college:"",goal:""},tasks:[],expenses:[],cgpa:0,notes:""};
 function mode(x){signup=x;$("loginTab").classList.toggle("active",!x);$("signupTab").classList.toggle("active",x);$("authBtn").textContent=x?"Create account":"Login";$("authMsg").textContent=""}
 $("loginTab").onclick=()=>mode(false);$("signupTab").onclick=()=>mode(true);
