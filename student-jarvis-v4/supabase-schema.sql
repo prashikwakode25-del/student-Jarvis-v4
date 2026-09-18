@@ -1,0 +1,6 @@
+create table if not exists public.student_data(user_id uuid primary key references auth.users(id) on delete cascade,data jsonb not null default '{"profile":{"name":"Student","college":"","goal":""},"tasks":[],"expenses":[],"cgpa":0,"notes":""}'::jsonb,created_at timestamptz not null default now(),updated_at timestamptz not null default now());
+alter table public.student_data enable row level security;
+drop policy if exists "Users can view their own student data" on public.student_data;create policy "Users can view their own student data" on public.student_data for select using(auth.uid()=user_id);
+drop policy if exists "Users can insert their own student data" on public.student_data;create policy "Users can insert their own student data" on public.student_data for insert with check(auth.uid()=user_id);
+drop policy if exists "Users can update their own student data" on public.student_data;create policy "Users can update their own student data" on public.student_data for update using(auth.uid()=user_id) with check(auth.uid()=user_id);
+drop policy if exists "Users can delete their own student data" on public.student_data;create policy "Users can delete their own student data" on public.student_data for delete using(auth.uid()=user_id);
